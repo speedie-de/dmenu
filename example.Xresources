@@ -1,0 +1,6 @@
+!! dmenu
+dmenu.font:               Terminus:pixelsize=15.5:antialias=true:autohint=true;
+dmenu.background:         #222222
+dmenu.foreground:         #bbbbbb
+dmenu.selbackground:      #333333
+dmenu.selforeground:      #bbbbbb
