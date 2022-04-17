@@ -26,6 +26,7 @@ If you are unsure, you can look at the example.Xresources file that should be in
 ### Scripts
 This build of dmenu should work with all dmenu scripts. Here are a few I've written/use:
 - [copyout](https://github.com/speediegamer/copyout)
+- [emojilist](https://raw.githubusercontent.com/speedie-de/st/main/emojilist)
 - [dsearch](https://github.com/speediegamer/dsearch)
 - [dfmpeg](https://github.com/speediegamer/dfmpeg)
 - [cfgedit](https://github.com/speediegamer/cfgedit)
