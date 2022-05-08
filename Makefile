@@ -76,7 +76,7 @@ gentoo-libxftfix:
 arch-libxftfix:
 	git clone https://aur.archlinux.org/libxft-bgra
 	cd libxft-bgra
-	makepkg -si
+	makepkg -i
 
 help:
 	@echo install: Installs dmenu. You may need to run this as root.
