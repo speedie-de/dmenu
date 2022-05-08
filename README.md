@@ -41,3 +41,4 @@ This build of dmenu should work with all dmenu scripts. Here are a few I've writ
 - [dfmpeg](https://github.com/speediegamer/dfmpeg)
 - [cfgedit](https://github.com/speediegamer/cfgedit)
 - [swal](https://github.com/speediegamer/swal)
+- [More Scripts](https://speedie.gq/dmenu-scripts.html)
