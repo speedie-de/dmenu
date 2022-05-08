@@ -1,2 +1,45 @@
 #!/bin/sh
-dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"} &
+
+PYWAL()
+{
+  WAL_VARS()
+  {
+    COLORLIST=~/.cache/wal/colors
+    XRESOURCES=~/.cache/wal/colors.dmenu.Xresources
+  }
+  
+  # These are the colors.
+  WAL_COLORS()
+  {
+    COLOR_01=$(sed -n 10,10p $COLORLIST)
+    COLOR_02=$(sed -n 4,4p $COLORLIST)
+    COLOR_03=$(sed -n 6,6p $COLORLIST)
+    COLOR_04=$(sed -n 1,1p $COLORLIST)
+  }
+
+  WAL_WRITE()
+  {
+    echo "!!dmenu" > $XRESOURCES
+    echo "dmenu.background:       $COLOR_01" >> $XRESOURCES
+    echo "dmenu.foreground:       $COLOR_02" >> $XRESOURCES
+    echo "dmenu.selbackground:    $COLOR_03" >> $XRESOURCES
+    echo "dmenu.selforeground:    $COLOR_04" >> $XRESOURCES
+  }
+  
+  WAL_SET()
+  {
+  # Pywal
+  ls /usr/bin/xrdb && ls ~/.cache/wal/colors.dmenu.Xresources || touch ~/.cache/wal/colors.dmenu.Xresources
+  ls ~/.cache/wal/colors.Xresources && xrdb -query | grep "color66" && printf "Using pywal" && xrdb -override ~/.cache/wal/colors.dmenu.Xresources
+  }
+
+  WAL_VARS
+  WAL_COLORS
+  WAL_WRITE
+  WAL_SET
+}
+
+PYWAL
+
+# Run dmenu
+dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"} & 
