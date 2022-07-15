@@ -24,7 +24,7 @@ config.h:
 $(OBJ): arg.h config.h config.mk drw.h
 
 dmenu: dmenu.o drw.o util.o
-	$(CC) -o $@ dmenu.o drw.o util.o $(LDFLAGS) && rm -f config.h stest.o util.o drw.o dmenu.o ; cp wal.sh $(DESTDIR)$(PREFIX)/bin/wal_dmenu.sh ; chmod +x $(DESTDIR)$(PREFIX)/bin/wal_dmenu.sh
+	$(CC) -o $@ dmenu.o drw.o util.o $(LDFLAGS) && rm -f config.h stest.o util.o drw.o dmenu.o
 
 stest: stest.o
 	$(CC) -o $@ stest.o $(LDFLAGS)
