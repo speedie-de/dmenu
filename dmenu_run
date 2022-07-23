@@ -12,9 +12,9 @@ PYWAL()
   WAL_COLORS()
   {
     COLOR_01=$(sed -n 10,10p $COLORLIST)
-    COLOR_02=$(sed -n 4,4p $COLORLIST)
+    COLOR_02=$(sed -n 1,1p $COLORLIST)
     COLOR_03=$(sed -n 6,6p $COLORLIST)
-    COLOR_04=$(sed -n 1,1p $COLORLIST)
+    COLOR_04=$(sed -n 4,4p $COLORLIST)
   }
 
   WAL_WRITE()
@@ -29,8 +29,8 @@ PYWAL()
   WAL_SET()
   {
   # Pywal
-  ls /usr/bin/xrdb && ls ~/.cache/wal/colors.dmenu.Xresources || touch ~/.cache/wal/colors.dmenu.Xresources
-  ls ~/.cache/wal/colors.Xresources && xrdb -query | grep "color66" && printf "Using pywal" && xrdb -override ~/.cache/wal/colors.dmenu.Xresources
+  test /usr/bin/xrdb && test ~/.cache/wal/colors.dmenu.Xresources || touch ~/.cache/wal/colors.dmenu.Xresources
+  test ~/.cache/wal/colors.Xresources && xrdb -query | grep "color66" && printf "Using pywal" && xrdb -merge ~/.cache/wal/colors.dmenu.Xresources
   }
 
   WAL_VARS
@@ -39,7 +39,10 @@ PYWAL()
   WAL_SET
 }
 
-PYWAL
+case "$1" in
+"-r") PYWAL ;;
+"") test /usr/bin/dmenu && test ~/.cache/wal/colors.dmenu.Xresources && xrdb -merge ~/.cache/wal/colors.dmenu.Xresources ;;
+esac
 
 # Run dmenu
-dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"} & 
+dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"} &
