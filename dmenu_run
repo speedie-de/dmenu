@@ -40,7 +40,7 @@ PYWAL()
 }
 
 case "$1" in
-"-r") PYWAL ;;
+"-r") PYWAL ; rm $HOME/.cache/dmenu_run ;;
 "") test /usr/bin/dmenu && test ~/.cache/wal/colors.dmenu.Xresources && xrdb -merge ~/.cache/wal/colors.dmenu.Xresources ;;
 esac
 
