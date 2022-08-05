@@ -911,9 +911,24 @@ setup(void)
 	swa.background_pixel = 0;
 	swa.colormap = cmap;
 	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask | ButtonPressMask;
-	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, 0,
+
+	if (!bordercentered) {
+	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, borderwidth,
 	                    depth, InputOutput, visual,
 						CWOverrideRedirect|CWBackPixel|CWBorderPixel|CWColormap|CWEventMask, &swa);
+    } else {
+		if (!centered) {
+				win = XCreateWindow(dpy, parentwin, x, y, mw, mh, 0,
+						depth, InputOutput, visual,
+						CWOverrideRedirect|CWBackPixel|CWBorderPixel|CWColormap|CWEventMask, &swa);
+		} else {
+				win = XCreateWindow(dpy, parentwin, x, y, mw, mh, borderwidth,
+	                    depth, InputOutput, visual,
+						CWOverrideRedirect|CWBackPixel|CWBorderPixel|CWColormap|CWEventMask, &swa);
+				}
+				
+    }
+    XSetWindowBorder(dpy, win, scheme[SchemeSel][ColBg].pixel);
 	XSetClassHint(dpy, win, &ch);
 
 
