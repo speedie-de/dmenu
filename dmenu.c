@@ -1106,6 +1106,9 @@ main(int argc, char *argv[])
 		else if (!strcmp(argv[i], "-s")) { /* case-sensitive item matching */
 			fstrncmp = strncmp;
 			fstrstr = strstr;
+		} else if (!strcmp(argv[i], "-i")) { /* case-sensitive item matching, for compatibility reasons */
+		    fstrncmp = strncasecmp;
+		    fstrstr = cistrstr;
 		} else if (i + 1 == argc)
 			usage();
 		/* these options take one argument */
