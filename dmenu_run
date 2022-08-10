@@ -30,7 +30,7 @@ PYWAL()
   {
   # Pywal
   test /usr/bin/xrdb && test ~/.cache/wal/colors.dmenu.Xresources || touch ~/.cache/wal/colors.dmenu.Xresources
-  test ~/.cache/wal/colors.Xresources && xrdb -query | grep "color66" && printf "Using pywal" && xrdb -merge ~/.cache/wal/colors.dmenu.Xresources
+  test ~/.cache/wal/colors.Xresources && xrdb -query | grep -q "color66" && printf "Using pywal" > /tmp/dmenurunlog && xrdb -merge ~/.cache/wal/colors.dmenu.Xresources
   }
 
   WAL_VARS
