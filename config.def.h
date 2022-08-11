@@ -35,7 +35,8 @@ static const char *colors[SchemeLast][2] = {
     [SchemeNormHighlight] = { "#ffffff", "#000000" },
 };
 /* -l and -g options; controls number of lines and columns in grid if > 0 */
-static unsigned int lines      = 0;
+static unsigned int lines      = 1;
+static unsigned int vertical   = 0; /* If != 0, show vertical instead of a horizontal listing */
 static unsigned int columns    = 10;
 static unsigned int lineheight = 5;
 static unsigned int minlineheight = 5;

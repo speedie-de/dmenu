@@ -91,16 +91,16 @@ calcoffsets(void)
 {
 	int i, n;
 
-	if (lines > 0)
+	if (vertical > 0)
 		n = lines * columns * bh;
 	else
 		n = mw - (promptw + inputw + TEXTW("<") + TEXTW(">"));
 	/* calculate which items will begin the next page and previous page */
 	for (i = 0, next = curr; next; next = next->right)
-		if ((i += (lines > 0) ? bh : MIN(TEXTW(next->text), n)) > n)
+		if ((i += vertical ? bh : MIN(TEXTW(next->text), n)) > n)
 			break;
 	for (i = 0, prev = curr; prev && prev->left; prev = prev->left)
-		if ((i += (lines > 0) ? bh : MIN(TEXTW(prev->left->text), n)) > n)
+		if ((i += vertical ? bh : MIN(TEXTW(prev->left->text), n)) > n)
 			break;
 }
 
@@ -211,7 +211,7 @@ drawmenu(void)
 		x = drw_text(drw, x, 0, promptw, bh, lrpad / 2, prompt, 0);
 	}
 	/* draw input field */
-	w = (lines > 0 || !matches) ? mw - x : inputw;
+	w = (vertical || !matches) ? mw - x : inputw;
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	drw_text(drw, x, 0, w, bh, lrpad / 2, text, 0);
 
@@ -221,7 +221,7 @@ drawmenu(void)
 		drw_rect(drw, x + curpos, 2 + (bh - fh) / 2, 2, fh - 4, 1, 0);
 	}
 
-	if (lines > 0) {
+	if (vertical) {
 		/* draw grid */
 		int i = 0;
 		for (item = curr; item != next; item = item->right, i++)
@@ -559,10 +559,18 @@ keypress(XKeyEvent *ev)
 			goto draw;
 		case XK_g: ksym = XK_Home;  break;
 		case XK_G: ksym = XK_End;   break;
-		case XK_h: ksym = XK_Up;    break;
-		case XK_j: ksym = XK_Next;  break;
-		case XK_k: ksym = XK_Prior; break;
-		case XK_l: ksym = XK_Down;  break;
+		case XK_j:
+            vertical ? ksym = XK_Down : (ksym = XK_Next);
+            break;
+		case XK_k:
+            vertical ? ksym = XK_Up : (ksym = XK_Prior);
+            break;
+        case XK_h:
+            vertical ? ksym = XK_Prior : (ksym = XK_Up);
+            break;
+		case XK_l:
+            vertical ? ksym = XK_Next : (ksym = XK_Down);
+            break;
 		default:
 			return;
 		}
@@ -637,11 +645,11 @@ insert:
 			break;
 		}
 	case XK_KP_Left:
-		if (cursor > 0 && (!sel || !sel->left || lines > 0)) {
+		if (cursor > 0 && (!sel || !sel->left || vertical)) {
 			cursor = nextrune(-1);
 			break;
 		}
-		if (lines > 0)
+		if (vertical)
 			return;
 		/* fallthrough */
 	case XK_Up:
@@ -702,7 +710,7 @@ insert:
 			cursor = nextrune(+1);
 			break;
 		}
-		if (lines > 0)
+		if (vertical)
 			return;
 		/* fallthrough */
 	case XK_Down:
@@ -1178,6 +1186,7 @@ main(int argc, char *argv[])
 		/* these options take one argument */
 		else if (!strcmp(argv[i], "-g")) {   /* number of columns in grid */
 			columns = atoi(argv[++i]);
+			vertical = 1;
 			if (lines == 0) lines = 1;
 		} else if (!strcmp(argv[i], "-l")) { /* number of lines in grid */
 			lines = atoi(argv[++i]);
