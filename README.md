@@ -1,6 +1,11 @@
 # dmenu
 speedie's dmenu configuration
 
+### Note
+
+I am no longer maintaining this dmenu build. Use [spmenu](https://git.speedie.gq/spmenu) instead, it's much cooler anyway.
+I will accept pull requests to fix bugs though.
+
 This is my personal always-changing build of [suckless.org](https://suckless.org)'s [dmenu](https://tools.suckless.org/dmenu).
 It has alpha, case-insensitive, grid, xresources, color font/emoji, highlight and pywal support built right in and integrates well with my build of [dwm](https://github.com/speedie-de/dwm).
 
@@ -32,14 +37,3 @@ This build of dmenu has full compatibility with .Xresources and allows defining 
 - dmenu.selforeground
 
 If you are unsure, you can look at the example.Xresources file that should be included.
-
-### Scripts
-This build of dmenu should work with all dmenu scripts. Here are a few I've written/use:
-- [copyout](https://github.com/speediegamer/copyout)
-- [emojilist](https://raw.githubusercontent.com/speedie-de/st/main/emojilist)
-- [dboard](https://github.com/speediegamer/dboard)
-- [dsearch](https://github.com/speediegamer/dsearch)
-- [dfmpeg](https://github.com/speediegamer/dfmpeg)
-- [cfgedit](https://github.com/speediegamer/cfgedit)
-- [swal](https://github.com/speediegamer/swal)
-- [More Scripts](https://speedie.gq/dmenu-scripts.html)
