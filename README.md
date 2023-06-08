@@ -3,7 +3,7 @@ speedie's dmenu configuration
 
 ### Note
 
-I am no longer maintaining this dmenu build. Use [spmenu](https://git.speedie.gq/spmenu) instead, it's much cooler anyway.
+I am no longer maintaining this dmenu build. Use [spmenu](https://git.speedie.site/speedie/spmenu) instead, it's much cooler anyway.
 I will accept pull requests to fix bugs though.
 
 This is my personal always-changing build of [suckless.org](https://suckless.org)'s [dmenu](https://tools.suckless.org/dmenu).
